@@ -9,11 +9,15 @@ const FilterBar = () => {
 
   const regionChangeHandler = () => {
     const enteredRegion = regionSelectRef.current.value;
-    console.log(enteredRegion);
+
+    if (enteredRegion === "All") {
+      setCurrentCountries(totalCountries);
+      return;
+    }
     const filteredCountries = totalCountries.filter(
       (country) => country.region === enteredRegion
     );
-    console.log(filteredCountries);
+
     setCurrentCountries(filteredCountries);
   };
 
@@ -27,6 +31,7 @@ const FilterBar = () => {
       <option value="1" disabled style={{ display: "none" }}>
         Filter by Region
       </option>
+      <option>All</option>
       {regions.map((region) => (
         <option key={region}>{region}</option>
       ))}
