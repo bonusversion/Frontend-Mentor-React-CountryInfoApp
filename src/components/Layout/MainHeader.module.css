@@ -1,0 +1,34 @@
+.header-night {
+  background-color: hsl(209, 23%, 22%);
+}
+
+.header-day {
+  background-color: hsl(0, 0%, 100%);
+}
+
+.header-day,
+.header-night {
+  box-sizing: border-box;
+  position: relative;
+  width: 100%;
+  height: 10vh;
+  padding: 0 10vw 0 10vw;
+  font-family: "Nunito Sans", sans-serif;
+  line-height: 10vh;
+}
+
+.title {
+  display: inline;
+}
+
+header button {
+  position: absolute;
+  top: 5vh;
+  right: 5vw;
+  transform: translateY(-50%);
+  margin-right: 20px;
+  color: hsl(200, 15%, 8%);
+  border: none;
+  background-color: transparent;
+  font-weight: 600;
+}

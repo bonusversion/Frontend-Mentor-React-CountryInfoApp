@@ -1,0 +1,11 @@
+.card-box {
+  padding: 0;
+}
+.card-box li {
+  display: inline-block;
+  vertical-align: top;
+  margin: 5vh 5vh 5vh 0;
+  width: 18vw;
+  height: 40vh;
+  overflow: hidden;
+}

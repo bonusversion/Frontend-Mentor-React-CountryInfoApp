@@ -1,0 +1,19 @@
+.tag-title {
+  line-height: 1.5rem;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.tag-title span {
+  font-size: 14px;
+  font-weight: 300;
+}
+
+.flag {
+  width: 18vw;
+  height: 20vh;
+}
+
+.info {
+  margin-left: 2vw;
+}
