@@ -50,6 +50,7 @@ const useHttp = (url) => {
       dispatch({ type: "SUCCESS", data });
     } catch (error) {
       dispatch({ type: "ERROR", errorMessage: error.message });
+      alert(error.message);
     }
   }, [url]);
 

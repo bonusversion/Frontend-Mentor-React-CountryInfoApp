@@ -17,11 +17,18 @@
   text-indent: 1rem;
 }
 
+.filter p {
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
 .filter ul {
   max-height: 30vh;
   overflow: scroll;
   padding: 0;
   margin-top: 1vh;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 
 .filter li:hover {
