@@ -7,7 +7,7 @@ import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 const SearchBar = () => {
   const countryCtx = useContext(CountryContext);
   const countryInputHandler = (event) => {
-    document.getElementsByTagName("select")[0].value = "default";
+    document.getElementById("filter-bar").textContent = "Filter by Region";
 
     const enteredCountry = event.target.value;
     const matchedCountries = countryCtx.totalCountries.filter((country) =>

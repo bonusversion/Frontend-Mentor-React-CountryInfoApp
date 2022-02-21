@@ -21,6 +21,10 @@ p {
   padding: 0;
 }
 
+li {
+  list-style: none;
+}
+
 .dark-mode {
   color: hsl(0, 0%, 100%);
   background-color: hsl(207, 26%, 17%);

@@ -8,37 +8,9 @@ import LoadingSpinner from "../LoadingSpinner/LoadingSpinner";
 import { ModeContext, modeContext } from "../../store/mode-context";
 
 const CountryCardContainer = () => {
-  //   const { setRegions, setCurrentCountries, setTotalCountries } =
-  //     useContext(CountryContext);
-
   const { pageStatus } = useContext(ModeContext);
 
   const currentCountries = useContext(CountryContext).currentCountries;
-  //   const {
-  //     sendRequest,
-  //     status,
-  //     data: totalCountryData,
-  //     error,
-  //   } = useHttp("https://restcountries.com/v2/all");
-
-  //   useEffect(() => {
-  //     sendRequest();
-  //   }, []);
-
-  //   useEffect(() => {
-  //     if (status === "completed" && totalCountryData) {
-  //       const regionData = [
-  //         ...new Set(totalCountryData.map((country) => country.region)),
-  //       ];
-  //       setRegions(regionData);
-  //       setCurrentCountries(totalCountryData);
-  //       setTotalCountries(totalCountryData);
-  //     }
-  //   }, [status, totalCountryData]);
-
-  //   if (status === "pend") {
-  //     return <LoadingSpinner />;
-  //   }
 
   if (pageStatus === "pend") {
     return <LoadingSpinner />;
