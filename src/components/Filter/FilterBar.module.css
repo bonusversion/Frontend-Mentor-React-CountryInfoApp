@@ -13,3 +13,9 @@ select {
   -webkit-appearance: none; /* Safari 和 Chrome */
   /* background: url(../xxx/xxx.jpg) calc(100% - 10px) center no-repeat; 自定义一个小sanji三角 */
 }
+
+.icon {
+  position: absolute;
+  top: 17vh;
+  right: 6vw;
+}

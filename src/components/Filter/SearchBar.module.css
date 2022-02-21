@@ -3,5 +3,11 @@
   height: 6vh;
   margin-top: 5vh;
   font-size: 14px;
-  text-indent: 2rem;
+  text-indent: 4rem;
+}
+
+.icon {
+  position: absolute;
+  top: 17vh;
+  left: 12vw;
 }

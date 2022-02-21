@@ -1,0 +1,29 @@
+.borders {
+  position: absolute;
+  top: 38vh;
+  font-size: 14px;
+}
+
+.borders ul {
+  padding: 0;
+  display: inline-block;
+}
+
+.borders li {
+  display: inline-block;
+  list-style: none;
+  margin-right: 1rem;
+  padding: 0 15px;
+  height: 25px;
+  line-height: 25px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  border-radius: 3px;
+  margin-bottom: 10px;
+}
+
+.borders .tag-title {
+  padding: 0;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+}

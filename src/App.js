@@ -1,8 +1,10 @@
-import { useContext, useEffect } from "react";
-import FilterBar from "./components/Filter/FilterBar";
-import SearchBar from "./components/Filter/SearchBar";
+import { useContext, useEffect, useState } from "react";
+import { Redirect, Route, Switch } from "react-router-dom";
+import useHttp from "./hooks/use-http";
+
 import Layout from "./components/Layout/Layout";
-import CountryCardContainer from "./components/CountryCard/CountryCardContainer";
+import DetailPage from "./pages/DetailPage";
+import MainPage from "./pages/MainPage";
 import { CountryContext } from "./store/country-context";
 import { ModeContext } from "./store/mode-context";
 
@@ -12,38 +14,48 @@ function App() {
   const { setRegions, setCurrentCountries, setTotalCountries } =
     useContext(CountryContext);
 
-  const classes = mode ? "dark-mode" : "day-mode";
+  const {
+    sendRequest,
+    status,
+    data: totalCountryData,
+    error,
+  } = useHttp("https://restcountries.com/v2/all");
+
   useEffect(() => {
-    const fetchCountriesData = async () => {
-      try {
-        const response = await fetch("https://restcountries.com/v2/all");
-        const countryData = await response.json();
-        console.log(countryData);
+    sendRequest();
+  }, [sendRequest]);
 
-        if (!response.ok)
-          throw new Error(countryData.message || "Something went wrong");
+  useEffect(() => {
+    if (status === "completed" && totalCountryData) {
+      const regionData = [
+        ...new Set(totalCountryData.map((country) => country.region)),
+      ];
+      setRegions(regionData);
+      setCurrentCountries(totalCountryData);
+      setTotalCountries(totalCountryData);
+    }
+  }, [status, totalCountryData]);
 
-        const regionData = [
-          ...new Set(countryData.map((country) => country.region)),
-        ];
+  const classes = mode ? "dark-mode" : "day-mode";
 
-        setRegions(regionData);
-        setCurrentCountries(countryData);
-        setTotalCountries(countryData);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-
-    fetchCountriesData();
-  }, [setRegions, setTotalCountries, setCurrentCountries]);
+  document.getElementsByTagName("body")[0].style.backgroundColor = mode
+    ? "hsl(207, 26%, 17%)"
+    : "hsl(0, 0%, 98%)";
 
   return (
     <div className={classes}>
       <Layout>
-        <SearchBar />
-        <FilterBar />
-        <CountryCardContainer />
+        <Switch>
+          <Route path="/" exact>
+            <Redirect to="/countries" />
+          </Route>
+          <Route path="/countries" exact>
+            <MainPage />
+          </Route>
+          <Route path="/countries/:countryCode" exact>
+            <DetailPage />
+          </Route>
+        </Switch>
       </Layout>
     </div>
   );

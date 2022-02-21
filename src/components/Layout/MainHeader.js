@@ -1,6 +1,8 @@
 import classes from "./MainHeader.module.css";
 import { Fragment, useContext } from "react";
 import { ModeContext } from "../../store/mode-context";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faMoon, faLightbulb } from "@fortawesome/free-solid-svg-icons";
 
 const MainHeader = (props) => {
   const { mode, toggleMode } = useContext(ModeContext);
@@ -20,7 +22,13 @@ const MainHeader = (props) => {
           onClick={toggleMode}
           style={{ color: mode ? "hsl(0, 0%, 98%)" : "hsl(209, 23%, 22%)" }}
         >
-          Dark Mode
+          {mode ? (
+            <FontAwesomeIcon icon={faMoon} />
+          ) : (
+            <FontAwesomeIcon icon={faLightbulb} />
+          )}
+          <span>&nbsp;</span>
+          {mode ? "Dark" : "Day"} Mode
         </button>
       </header>
     </Fragment>

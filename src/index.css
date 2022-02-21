@@ -20,6 +20,7 @@ p {
   margin: 0;
   padding: 0;
 }
+
 .dark-mode {
   color: hsl(0, 0%, 100%);
   background-color: hsl(207, 26%, 17%);
@@ -73,6 +74,48 @@ ul {
 }
 
 .shadowbox {
-  border-radius: 5px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+}
+
+.link {
+  text-decoration: none;
+  color: inherit;
+}
+
+.back-btn-day,
+.back-btn-night {
+  display: block;
+  margin: 5vh 0;
+  width: 10vw;
+  height: 5vh;
+  color: inherit;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
+}
+
+.back-btn-day {
+  background-color: hsl(0, 0%, 100%);
+}
+
+.back-btn-night {
+  background-color: hsl(209, 23%, 22%);
+}
+
+.img-detail {
+  width: 35vw;
+}
+
+.info-sheet {
+  position: absolute;
+  top: 24vh;
+  right: 5vw;
+}
+.info-sheet h2 {
+  font-weight: 800;
+}
+.info-sheet td {
+  padding: 0vh 8vw 2vh 0;
+  font-size: 14px;
 }
