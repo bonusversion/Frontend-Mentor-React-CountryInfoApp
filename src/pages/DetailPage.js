@@ -3,11 +3,13 @@ import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 import useHttp from "../hooks/use-http";
 import BorderCountries from "../components/Details/BorderCountries";
 import { ModeContext } from "../store/mode-context";
+import LoadingSpinner from "../components/LoadingSpinner/LoadingSpinner";
+
 const DetailPage = () => {
   const mode = useContext(ModeContext).mode;
   const params = useParams();
+
   const { countryCode } = params;
-  console.log("countryCode", countryCode);
 
   const {
     sendRequest,
@@ -24,7 +26,9 @@ const DetailPage = () => {
     window.history.back(-1);
   };
 
-  if (status === "pend") return null;
+  if (status === "pend") {
+    return <LoadingSpinner></LoadingSpinner>;
+  }
   if (status === "completed" && error) {
     console.log("custom error", error);
     return null;

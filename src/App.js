@@ -9,7 +9,7 @@ import { CountryContext } from "./store/country-context";
 import { ModeContext } from "./store/mode-context";
 
 function App() {
-  const mode = useContext(ModeContext).mode;
+  const { mode, pageStatus, setPageStatus } = useContext(ModeContext);
 
   const { setRegions, setCurrentCountries, setTotalCountries } =
     useContext(CountryContext);
@@ -22,8 +22,14 @@ function App() {
   } = useHttp("https://restcountries.com/v2/all");
 
   useEffect(() => {
-    sendRequest();
-  }, [sendRequest]);
+    const fetchTotalData = async () => {
+      setPageStatus("pend");
+      await sendRequest();
+      setPageStatus("completed");
+    };
+
+    fetchTotalData();
+  }, []);
 
   useEffect(() => {
     if (status === "completed" && totalCountryData) {

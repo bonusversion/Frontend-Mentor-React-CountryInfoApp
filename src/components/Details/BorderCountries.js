@@ -1,24 +1,44 @@
-import { Fragment, useContext } from "react";
+import { Fragment, useContext, useEffect } from "react";
 import { CountryContext } from "../../store/country-context";
 import { ModeContext } from "../../store/mode-context";
+import useHttp from "../../hooks/use-http";
 
 import classes from "./BorderCountries.module.css";
 
 const BorderCountries = (props) => {
   const mode = useContext(ModeContext).mode;
-  const { totalCountries } = useContext(CountryContext);
+  let totalCountries;
+
+  const {
+    sendRequest,
+    status,
+    data: totalCountryData,
+    error,
+  } = useHttp("https://restcountries.com/v2/all");
+
+  useEffect(() => {
+    sendRequest();
+  }, [sendRequest]);
+
+  if (status === "pend") {
+    return null;
+  }
+
+  if (status === "completed" && error) {
+    console.log(error);
+    return null;
+  }
+
+  if (totalCountryData && status === "completed") {
+    totalCountries = totalCountryData;
+  }
 
   const countriesCodeList = props.borderCountries;
-  console.log(props);
-  console.log("props.borderCountries", props.borderCountries);
 
   const countriesNameList = countriesCodeList.map((code) => {
-    console.log(code);
-    console.log(totalCountries);
     return totalCountries.find((country) => country.alpha3Code === code).name;
   });
-  console.log(mode);
-  const spanStyle = mode ? classes["li-day"] : classes["li-night"];
+
   const content = countriesNameList.map((country, index) => (
     <li key={index} className="shadowbox">
       {country}

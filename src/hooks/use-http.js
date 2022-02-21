@@ -1,4 +1,6 @@
 import { useCallback, useReducer } from "react";
+import { useContext } from "react";
+import { ModeContext } from "../store/mode-context";
 
 const httpReducer = (state, action) => {
   if (action.type === "SEND") {
@@ -38,6 +40,7 @@ const useHttp = (url) => {
 
   const sendRequest = useCallback(async () => {
     dispatch({ type: "SEND" });
+
     try {
       const response = await fetch(url);
       if (!response.ok) {

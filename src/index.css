@@ -118,4 +118,5 @@ ul {
 .info-sheet td {
   padding: 0vh 8vw 2vh 0;
   font-size: 14px;
+  max-width: 15vw;
 }
