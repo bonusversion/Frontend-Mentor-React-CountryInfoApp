@@ -1,5 +1,5 @@
 import classes from "./FilterBar.module.css";
-import { Fragment, useContext, useRef, useState } from "react";
+import { Fragment, useContext, useEffect, useRef, useState } from "react";
 import { CountryContext } from "../../store/country-context";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleDown } from "@fortawesome/free-solid-svg-icons";
@@ -13,28 +13,16 @@ const FilterBar = () => {
   const [isHidden, setIsHidden] = useState(true);
   const [selectedRegion, setSelectedRegion] = useState("Filter by Region");
 
-  const regionChangeHandler = () => {
-    document.getElementsByTagName("input")[0].value = "";
-
-    const enteredRegion = regionSelectRef.current.value;
-
-    if (enteredRegion === "All") {
-      setCurrentCountries(totalCountries);
-      return;
-    }
-    const filteredCountries = totalCountries.filter(
-      (country) => country.region === enteredRegion
-    );
-
-    setCurrentCountries(filteredCountries);
-  };
-
   const mouseOverHandler = () => {
     setIsHidden(false);
   };
   const mouseLeaveHandler = () => {
     setIsHidden(true);
   };
+
+  useEffect(() => {
+    document.getElementsByTagName("input")[0].value = "";
+  }, [selectedRegion]);
 
   const selectHandler = (event) => {
     const enteredRegion = event.target.textContent;
